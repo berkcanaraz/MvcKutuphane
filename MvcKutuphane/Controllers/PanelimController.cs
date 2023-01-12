@@ -88,6 +88,11 @@ namespace MvcKutuphane.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("GirisYap", "Login");
         }
+        public ActionResult AdminLogOut()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login", "AdminLogin");
+        }
         public PartialViewResult Partial1()
         {
             return PartialView();

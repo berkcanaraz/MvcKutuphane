@@ -29,12 +29,6 @@ namespace MvcKutuphane.Controllers
                 Session["FOTOGRAF"] = bilgiler.FOTOGRAF.ToString();
                 Session["AD"] = bilgiler.AD.ToString();
                 Session["SOYAD"] = bilgiler.SOYAD.ToString();
-                //TempData["Ad"] = bilgiler.AD.ToString();
-                //TempData["Soyad"] = bilgiler.SOYAD.ToString();
-                //TempData["Kadi"]=bilgiler.KULLANICIADI.ToString();
-                //TempData["Sifre"] = bilgiler.SIFRE.ToString();
-                //TempData["Telefon"] = bilgiler.TELEFON.ToString();
-                //TempData["Okul"] = bilgiler.OKUL.ToString();
                 return RedirectToAction("Index","Panelim");
             }
             else

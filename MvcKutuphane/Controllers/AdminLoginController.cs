@@ -27,12 +27,13 @@ namespace MvcKutuphane.Controllers
             {
                 FormsAuthentication.SetAuthCookie(bilgiler.Kullanici, false);
                 Session["Kullanici"] = bilgiler.Kullanici.ToString();
-                return RedirectToAction("Index", "Kategori");
+                return RedirectToAction("Index", "İstatistik"); 
             }
             else
             {
                 return View();
             }
+
         }
     }
 }
