@@ -33,7 +33,6 @@ namespace MvcKutuphane.Controllers
         public ActionResult KategoriSil(int id)
         {
             var kategori = db.TBLKATEGORI.Find(id);
-            //db.TBLKATEGORI.Remove(kategori);
             kategori.DURUM = false;
             db.SaveChanges();
             return RedirectToAction("Index");

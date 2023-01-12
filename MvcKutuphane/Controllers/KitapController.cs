@@ -39,9 +39,8 @@ namespace MvcKutuphane.Controllers
                                                Text = i.AD + ' ' + i.SOYAD,
                                                Value = i.ID.ToString()
                                            }).ToList();
-            ViewBag.dgr2=deger2;
+            ViewBag.dgr2 = deger2;
             return View();
-
         }
         [HttpPost]
         public ActionResult KitapEkle(TBLKITAP p)
@@ -53,7 +52,6 @@ namespace MvcKutuphane.Controllers
             db.TBLKITAP.Add(p);
             db.SaveChanges();
             return RedirectToAction("Index");
-            
         }
         public ActionResult KitapSil(int id)
         {
@@ -80,7 +78,7 @@ namespace MvcKutuphane.Controllers
                                                Value = i.ID.ToString()
                                            }).ToList();
             ViewBag.dgr2 = deger2;
-            return View("KitapGetir",ktp);
+            return View("KitapGetir", ktp);
         }
         public ActionResult KitapGuncelle(TBLKITAP p)
         {
@@ -91,7 +89,7 @@ namespace MvcKutuphane.Controllers
             kitap.YAYINEVI = p.YAYINEVI;
             kitap.DURUM = true;
             var ktg = db.TBLKATEGORI.Where(k => k.ID == p.TBLKATEGORI.ID).FirstOrDefault();
-            var yzr =db.TBLYAZAR.Where(y=>y.ID == p.TBLYAZAR.ID).FirstOrDefault();
+            var yzr = db.TBLYAZAR.Where(y => y.ID == p.TBLYAZAR.ID).FirstOrDefault();
             kitap.KATEGORI = ktg.ID;
             kitap.YAZAR = yzr.ID;
             db.SaveChanges();
