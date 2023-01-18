@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MvcKutuphane.Models.DTO;
 using MvcKutuphane.Models.Entity;
 
 namespace MvcKutuphane.Controllers
@@ -50,27 +51,32 @@ namespace MvcKutuphane.Controllers
 
         public ActionResult LinqKart()
         {
-            var deger1 = db.TBLKITAP.Count();
-            var deger2 = db.TBLUYELER.Count();
-            var deger3 = db.TBLCEZALAR.Sum(x => x.PARA);
-            var deger4 = db.TBLKITAP.Where(x => x.DURUM == false).Count();
-            var deger5 = db.TBLKATEGORI.Count();
-            var deger8 = db.EnFazlaKitapYazar().FirstOrDefault();
-            var deger9 = db.TBLKITAP.GroupBy(x => x.YAYINEVI).OrderByDescending(z => z.Count()).Select(y => new { y.Key }).FirstOrDefault();
-            var deger11 = db.TBLILETISIM.Count();
-            var deger10 = db.TBLKITAP.Where(x => x.DURUM == false).Count();
+            LinqKartDto linqKartDto = new LinqKartDto();
+
+            linqKartDto.KitapCount = db.TBLKITAP.Count();
+            linqKartDto.UyelerCount = db.TBLUYELER.Count();
+            linqKartDto.CezalarToplam = db.TBLCEZALAR.Sum(x => x.PARA);
+            linqKartDto.AktifOlmayanKitapCount = db.TBLKITAP.Where(x => x.DURUM == false).Count();
+            linqKartDto.KategoriCount = db.TBLKATEGORI.Count();
+            linqKartDto.EnFazlaKitapYazar = db.EnFazlaKitapYazar().FirstOrDefault();
+            linqKartDto.YayınEviGroup = db.TBLKITAP.GroupBy(x => x.YAYINEVI).OrderByDescending(z => z.Count()).Select(y => new { y.Key }).FirstOrDefault().Key;
+            linqKartDto.IletisimCount = db.TBLILETISIM.Count();
+            linqKartDto.AktifOlmayanKitapCount = db.TBLKITAP.Where(x => x.DURUM == false).Count();
             //var deger12 = db.EnFazlaKitapAlan().FirstOrDefault();
 
-            ViewBag.dgr1 = deger1;
-            ViewBag.dgr2 = deger2;
-            ViewBag.dgr3 = deger3;
-            ViewBag.dgr4 = deger4;
-            ViewBag.dgr5 = deger5;
-            ViewBag.dgr8 = deger8;
-            ViewBag.dgr9 = deger9;
-            ViewBag.dgr11 = deger11;
+            
+
+
+            //ViewBag.dgr1 = deger1;
+            //ViewBag.dgr2 = deger2;
+            //ViewBag.dgr3 = deger3;
+            //ViewBag.dgr4 = deger4;
+            //ViewBag.dgr5 = deger5;
+            //ViewBag.dgr8 = deger8;
+            //ViewBag.dgr9 = deger9;
+            //ViewBag.dgr11 = deger11;
             //ViewBag.dgr12 = deger12;
-            return View();
+            return View(linqKartDto);
         }
     }
 }
